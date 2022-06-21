@@ -1,0 +1,46 @@
+body {
+    background-image: url("imgs/tropical-leaves-background-zoom_52683-40995.webp")
+}
+h1 { font-family: monaco, Consolas, "Lucida Console", monospace;
+    font-size: 50px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+    text-align: center;
+    color: #FC89AC;
+}
+
+td {
+    background-color: #F9CCCA;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+td:hover{
+    background-color: #d3d3d3;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #228B22;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: #F9CCCA;
+    color: #228B22;
+}
+
+button:hover{
+    background-color: #228B22;
+    color: #F9CCCA;
+}

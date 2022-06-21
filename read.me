@@ -1,0 +1,76 @@
+Connect Four Pseudocode
+
+Setup:
+A board of 6 row by 7 column game of empty circles
+2 players: Player 1, Player 2
+Colors: Peach and cerulean
+Restart button to reset the entire game
+
+Winner:
+Player wins if pieces reach four in a row
+Player can win by horizontal, vertical, and diagonal
+
+Process:
+Initialize: Board will be all empty 
+Players can only click on the circle, not the grid
+
+Player 1 will start the game and will be able to choose any empty space of the first row
+Once player 1 fills the first spot, it is player 2's turn
+
+Player 2 will be able to choose any spot other than Player 1's spot, on the first row
+
+Pieces can be only stacked on top of each other
+
+Game stops once a player reaches 4 in a row
+
+/*----- constants -----*/
+Player 1
+Player 2
+Winning Combinations (look on stackOverFlow)
+
+/*----- app's state (variables) -----*/
+Board
+Turn
+Winner
+
+/*----- cached element references, interactions on the page -----*/
+Each circle on the page
+Reset button
+
+/*----- event listeners -----*/
+Clicking on each circle
+Clicking on the reset game button
+
+/*----- functions -----*/
+Initalize all the state variables: board, player 1's turn, winner is no one
+
+HandleMove
+    use ParseInt to grab just the number
+    player 1 goes first, then take turns
+    pieces can only go on the first row before stacking on top of each other
+    check to see if a spot is already taken; next player cannot take a filled spot
+
+Render the color/image
+
+To check for winner
+    Divide the search into four ways: vertical, horizontal, right&down, right&up
+    From stackoverflow:
+        To check vertical
+            for row = 0 to 2:
+                for col = 0 to 6:
+                    if board[row][col] != 0 and
+                    board[row][col] == board[row+1][col] and
+                    board[row][col] == board[row+2][col] and
+                    board[row][col] == board[row+3][col]:
+                        return board[row][col]
+
+        To check horizontal
+            for row = 0 to 5:
+                for col = 0 to 3:
+                    if board[row][col] != 0 and
+                    board[row][col] == board[row][col+1] and
+                    board[row][col] == board[row][col+2] and
+                    board[row][col] == board[row][col+3]:
+                        return board[row][col]
+
+        To check right&down
