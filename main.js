@@ -1,9 +1,8 @@
 /*----- constants -----*/
 const lookup = {
-    "1": "#6a5acd",
-    "-1": "#ee82ee",
-    "null": "#e6e6fa",
-}
+    "1": '#6a5acd',
+    "-1": '#ee81ee',
+};
 
 const winningCombos = [
     [0,1,2,3], [1,2,3,4], [2,3,4,5], [3,4,5,6], [7,8,9,10],
@@ -25,11 +24,11 @@ const winningCombos = [
 /*----- app's state (variables) -----*/
 let board, turn, winner;
 
-/*----- cached element references -----*/
-
+/*----- cached(select and save)element references -----*/
+const circleEls = document.querySelectorAll('td');
 
 /*----- event listeners -----*/
-
+document.querySelector('table').addEventListener('click', handleMove);
 
 /*----- functions -----*/
 init();
@@ -43,8 +42,17 @@ function init() {
             null, null, null, null, null, null, null,
     ];
     turn = 1;
+
+    render();
+}
+
+function render() {
+    board.forEach(function(circle, idx) {
+        circleEls[idx].style.background = lookup[circle];
+    });
 }
 
 function handleMove(event) {
-    let index = parseInt(event.target.id)-1;
+    const idx = parseInt(event.target.id.replace('sq', ''));
+    //let index = parseInt(event.target.id)-1;
 }

@@ -1,7 +1,8 @@
 body {
     background-image: url("imgs/tropical-leaves-background-zoom_52683-40995.webp")
 }
-h1 { font-family: monaco, Consolas, "Lucida Console", monospace;
+h1 {
+    font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 50px;
     font-style: normal;
     font-variant: normal;
