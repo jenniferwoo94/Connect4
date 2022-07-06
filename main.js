@@ -42,7 +42,6 @@ function init() {
             null, null, null, null, null, null, null,
     ];
     turn = 1;
-
     render();
 }
 
@@ -53,6 +52,12 @@ function render() {
 }
 
 function handleMove(event) {
+    // Grab index value from the square we clicked on
     const idx = parseInt(event.target.id.replace('sq', ''));
-    //let index = parseInt(event.target.id)-1;
+    // Check if that square is available (if null or not)
+    if (board[idx] !== null) return;
+    // Update the state variables
+    board[idx] = turn;
+    turn *= -1;
+    render();
 }
