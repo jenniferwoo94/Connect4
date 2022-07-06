@@ -5,6 +5,11 @@ const lookup = {
     "null": "",
 };
 
+const columnCheck = [
+    [0,7,14,21,28,35], [1,8,15,22,29,36], [2,9,16,23,30,37],
+    [3,10,17,24,31,38], [4,11,18,25,32,39], [5,12,19,26,33,40], [6,13,20,27,34,41]
+];
+
 const winningCombos = [
     // horizontal winning combos
     [0,1,2,3], [1,2,3,4], [2,3,4,5], [3,4,5,6], [7,8,9,10],
@@ -56,15 +61,15 @@ function render() {
 }
 
 function handleMove(event) {
-    // Grab index value from the square we clicked on
-    const idx = parseInt(event.target.id.replace('sq', ''));
-    // Check if that square is available (if null or not)
-    if (board[idx] !== null) return;
-    let columnIndex = 0;
+    // Make sure the user clicks on a circle
 
-    // Update the state variables
-    board[idx] = turn;
-    turn *= -1;
-    // Call render to change the background color of each player's turn
-    render();
-}
+    // Grab index value from the square clicked on
+
+    // User can click on any of the 7 columns
+
+    // Circle must be put into the latest available index array of that column
+    // Update the new array
+    // Change the player's turn
+    // Call render to change the background of each player's turn
+    
+ 
