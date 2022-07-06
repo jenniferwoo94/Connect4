@@ -29,10 +29,12 @@ const circleEls = document.querySelectorAll('td');
 
 /*----- event listeners -----*/
 document.querySelector('table').addEventListener('click', handleMove);
+document.querySelector('button').addEventListener('click', init);
 
 /*----- functions -----*/
 init();
 
+// Initialize the state variables
 function init() {
     board = [null, null, null, null, null, null, null,
             null, null, null, null, null, null, null,
