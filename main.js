@@ -61,15 +61,32 @@ function render() {
 }
 
 function handleMove(event) {
-    // Make sure the user clicks on a circle
+    // Make sure the user clicks on a circle and nothing outside of the circle
+    if (event.target.tagName !== "TD") return;
 
-    // Grab index value from the square clicked on
+    // Grab index value from the circle clicked on
+    const idx = parseInt(event.target.id.replace('cir', ''));
 
-    // User can click on any of the 7 columns
+    // Check the values of the row
+    let columnIdx = 0;
+    columnCheck.forEach(function(col, index) {
+        if(col.includes(idx)) {
+            columnIdx = index;
+        };
+    });
+    if (board[idx]) return;
 
     // Circle must be put into the latest available index array of that column
-    // Update the new array
+    for (let i = 5; i > -1; i--) {
+        if (board[columnCheck[columnIdx][i]] === null) {
+            board[columnCheck[columnIdx][i]] = turn;
+            break;
+        };
+        // Update the new array
+        columnCheck[columnIdx][i];
+    };
     // Change the player's turn
+    turn *= -1;
     // Call render to change the background of each player's turn
-    
- 
+    render();
+}
