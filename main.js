@@ -7,7 +7,7 @@ const lookup = {
 
 const columnCheck = [
     [0,7,14,21,28,35], [1,8,15,22,29,36], [2,9,16,23,30,37],
-    [3,10,17,24,31,38], [4,11,18,25,32,39], [5,12,19,26,33,40], [6,13,20,27,34,41]
+    [3,10,17,24,31,38], [4,11,18,25,32,39], [5,12,19,26,33,40], [6,13,20,27,34,41],
 ];
 
 const winningCombos = [
@@ -27,13 +27,14 @@ const winningCombos = [
     [7,15,24,31], [5,11,17,23], [8,16,25,32], [4,10,16,22], [9,17,26,33],
     [3,9,15,21], [13,19,25,31], [14,22,30,38], [12,18,24,30], [15,23,31,39],
     [11,17,23,29], [16,24,32,40], [10,16,22,28], [17,25,33,41], [20,26,32,38],
-    [19,25,31,37], [18,24,30,36], [17,23,29,35]];
+    [19,25,31,37], [18,24,30,36], [17,23,29,35],];
 
 /*----- app's state (variables) -----*/
 let board, turn, winner;
 
 /*----- cached(select and save)element references -----*/
 const circleEls = document.querySelectorAll('td');
+const winnerEl = document.querySelector('h2');
 
 /*----- event listeners -----*/
 document.querySelector('table').addEventListener('click', handleMove);
@@ -50,6 +51,7 @@ function initialize() {
             null, null, null, null, null, null, null,
             null, null, null, null, null, null, null,
             null, null, null, null, null, null, null];
+    winner = null;
     turn = 1;
     render();
 }
@@ -58,6 +60,15 @@ function render() {
     board.forEach(function(circle, idx) {
         circleEls[idx].style.background = lookup[circle];
     });
+    if (winner === 1) {
+        winnerEl.textContent = "Purple Wins!";
+    } else if (winner === -1) {
+        winnerEl.textContent = "Pink Wins!";
+    } else if (winner === "tie") {
+        winnerEl.textContent = "Cats Game!";
+    } else {
+        winnerEl.textContent = "";
+    }
 }
 
 function handleMove(event) {
@@ -74,7 +85,7 @@ function handleMove(event) {
             columnIdx = index;
         };
     });
-    if (board[idx]) return;
+    if (board[idx] || winner) return;
 
     // Circle must be put into the latest available index array of that column
     for (let i = 5; i > -1; i--) {
@@ -87,6 +98,23 @@ function handleMove(event) {
     };
     // Change the player's turn
     turn *= -1;
+    // Finding a winner
+    winner = getWinner();
     // Call render to change the background of each player's turn
     render();
+}
+
+function getWinner() {
+    for (let i = 0; i < winningCombos.length; i++) {
+        if (Math.abs(
+            board[winningCombos[i][0]] + 
+            board[winningCombos[i][1]] +
+            board[winningCombos[i][2]] +
+            board[winningCombos[i][3]])
+            === 4) {
+            return board[winningCombos[i][0]];
+        };
+    };
+    if (board.includes(null)) return null;
+    return "tie";
 }
